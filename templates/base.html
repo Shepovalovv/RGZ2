@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Артём Шеповалов. {% block lab %}{% endblock %}</title>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'main.css')}}">
+    
+    {% block script %}{% endblock %}
+</head>
+<body>
+    <header>
+        WEB-программирование, часть 2. {{ self.lab() }}
+    </header>
+
+    <main>
+        <li>
+            <a href = '/menu' target = _blank>Меню</a>
+        </li>
+        {% block main %}{% endblock%}
+    </main>
+
+    <footer>
+        &copy; Артём Шеповалов, ФБИ-11, 3 курс, 2023
+    </footer>
+</body>
+</html>
+

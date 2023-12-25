@@ -1,0 +1,55 @@
+body { 
+    margin: 0;
+    background-color: rgb(187, 182, 175);
+}
+
+main {
+    margin-bottom: 40px;
+    padding: 10px;
+}
+
+header {
+    margin-bottom: 20px;
+    padding: 20px;
+    border-bottom: 2px blue solid;
+    border-top: 2px blue solid;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px blue solid;
+    border-top: 2px blue solid;
+    
+}
+
+footer:hover {
+    color: red;
+}
+
+header:hover {
+    color: red;
+}
+
+li:hover {
+    color: rgb(206, 27, 197);
+    font-size: large;
+}
+
+a:hover {
+    color: rgb(206, 27, 197);
+    font-size: large;
+}
+
+.error {
+    color: red;
+}
+
+.error:hover {
+    font-size: large;
+}
+
+a {
+    text-decoration: none;
+}
