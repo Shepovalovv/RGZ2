@@ -3,60 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Планирование отпусков</title>
+    <title></title>
     <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
-    <style>
-        a {
-            position: relative;
-            margin: 0vw 2.5vw 0vw 2.5vw;
-            text-decoration: none;
-            color:blueviolet
-        }
-
-        button {
-            border: 3px solid blueviolet;
-            border-radius: 15px;
-            background-color: black;
-            color: blueviolet;
-        }
-
-        .logout {
-            position: relative;
-        top: 2vw;
-        width: 30vw;
-        height: 12vw;
-        left: 34vw;
-        }
-    </style>
 </head>
 <body>
     <header style="height: 4vw;">
-        <span style="font-size: 3vw;">Отпуск</span>
-        <a href="{{ url_for('allFilms') }}">Дата отпуска</a>
+        <span style="font-size: 3vw;">Инициативы</span>
+        <a href="/app/new_initiative">Создать инициативу</a>
+        <a href="/app/all_initiatives">Мои инициативы</a>
         <button style="position: relative; left: 3vw;" href="">
             <a href="/app/login" target="_self">Логин</a>
         </button>
-        <button style="color: white; background-color: blueviolet; left: 5vw; position: relative;" href="">
+        <button style="background-color: rgb(132, 0, 255); left: 5vw; position: relative;" href="">
             <a style="color: white" href="/app/register" target="_self">Регистрация</a>
         </button>
-        <span  style="right: -7vw; position: relative; color:green">{{ name }}</span>
+        <span style="right: -7vw; position: relative; color:rgb(247, 3, 255)">{{ name }}</span>
+        {% if session['username'] == 'admin' %}  
+        <div style="color: white">
+            Хеллоу администратор
+        </div><br>
+        {% endif %}
+
+        <form action="{{ url_for('logout') }}" method="post">
+            <button style="position: relative; left: 2vw; width: 30vw;" type="submit">Выйти</button>
+        </form>
 
     </header>
     
     <main>
-        <br>
-        {% if session['username'] == 'admin' %}  <!-- Делаем поля дла администратора -->
-        <div>
-            Вы вошли под правами администратора
-            <button>
-                <a href="{{ url_for('createSession') }}">Сделать новый сеанс</a>
-            </button>
-        </div>
+        <h2>Список инициатив:</h2>
+        {% for initiative in initiatives %}
+            <div class="initiative">
+                <h3>{{ initiative.title }}</h3>
+                <p>{{ initiative.text }}</p>
+                <p>Дата создания: {{ initiative.creation_date }}</p>
+                <p>Рейтинг: {{ initiative.rating }}</p>
+                <form method="post" action="{{ url_for('vote', initiative_id=initiative.initiatives_id, vote_type=1) }}">
+                    <input type="hidden" name="page" value="{{ current_page }}">
+                    <button type="submit">Поддержать</button>
+                </form>
+                <form method="post" action="{{ url_for('vote', initiative_id=initiative.initiatives_id, vote_type=0) }}">
+                    <input type="hidden" name="page" value="{{ current_page }}">
+                    <button type="submit">Против</button>
+                </form>
+                {% if session['username'] == 'admin' %}
+                <form method="post" action="{{ url_for('delete_initiative', initiative_id=initiative.initiatives_id) }}">
+                    <input type="hidden" name="page" value="{{ current_page }}">
+                    <button type="submit">Удалить</button>
+                </form>
+                {% endif %}
+            </div>
+        {% endfor %}
+
+        {% if initiatives|length == per_page %}
+            <a style="border: 3px solid blueviolet" href="{{ url_for('main', page=current_page + 1) }}" id="load-more-btn">Загрузить ещё</a>
         {% endif %}
+        <br>
     </main>
     <br>
     <footer style="position: relative; top: 2vw;">
-        Кинотеатр "Поражение"
+        Инициативы
     </footer>
     
 </body>

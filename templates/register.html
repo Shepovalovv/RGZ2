@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+
+{% block main %}
+
+<br>
+<form class="form_register" method="POST">
+    <h1 >Страница регистрации</h1>
+
+    <div>
+        <input class='input_register' type="text" name="username" placeholder="Логин" value="{{ username or '' }}">
+    </div>
+
+    <br>
+
+    <div>
+        <input class='input_register' type="text" name="password" placeholder="Пароль" value="{{ password or '' }}">
+    </div>
+
+    <br>
+    <br>
+    <button type="submit">Зарегистрироваться</button>
+    <button type="button"><a href={{ (url_for('loginPage')) }}>Войти</a></button>
+    <br>
+    <br>
+    
+{% if not (username or password) and request.method == 'POST' %}
+<div>
+    <label>Ошибка: {{ errors }}</label>
+</div>
+{% endif %}
+
+</form>
+<br>
+{% endblock %}

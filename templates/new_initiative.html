@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block main %}
+<br>
+<br>
+<form method="POST">
+    <h1 style="position: relative; left: 50vw; width: 40vw;">Создать новую инициативу</h1>
+
+    <div style="position: relative; left: -130px; height: 2vw;">
+        <input class='input_register' style='height: 3vw; left: 46vw; position: relative; width: 20vw;' type="text" name="title" placeholder="Название" value="{{ title or '' }}">
+    </div>
+    <br>
+    <div style="position: relative; left: -118px; height: 2vw; top: 2vw">
+        <input style='height: 14vw; position: relative; width: 25vw; left: 43vw;' type="text" name="text" placeholder="текст" value="{{ text or '' }}">
+    </div>
+    <br>
+    <br>
+    <button style="position: relative; left: 48vw; top: 15vw;" type="submit">Создать</button>
+    <br>
+    <br>
+    
+{% if not (title or text) and request.method == 'POST' %}
+<div>
+    <label>{{ errors[0] }}</label>
+    <br>
+</div>
+{% endif %}
+<br>
+<br>
+</form>
+<br>
+{% endblock %}

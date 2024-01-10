@@ -1,10 +1,9 @@
 {% extends "base.html" %}
-{% block lab %}Лабораторная работа 4{% endblock %}
 
 {% block main %}
-    <h1>Вход</h1>
-    <h2>Пожалуйста, авторизуйтесь</h2>
-    <h3 style="text-align: center; color: red">{{ errors }}</h3>
+    <h1 style="position: relative; left: 41vw; width: 20vw;">Вход</h1>
+    <h2 style="position: relative; left: 41vw; width: 20vw;">Пожалуйста, авторизуйтесь</h2>
+    <h3 style="position: relative; left: 41vw; width: 20vw; color: red">{{ errors[0] }}</h3>
     <form method="post">
         <div>
             <label for="username">Логин:</label>

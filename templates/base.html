@@ -10,14 +10,13 @@
 </head>
 <body>
     <header>
-        WEB-программирование, часть 2. {{ self.lab() }}
+        WEB-программирование, часть 2. Расчётно-Графическое Задание
     </header>
 
     <main>
-        <li>
-            <a href = '/menu' target = _blank>Меню</a>
-        </li>
-        {% block main %}{% endblock%}
+        <div id="content">
+            {% block main %}{% endblock %}
+        </div>
     </main>
 
     <footer>

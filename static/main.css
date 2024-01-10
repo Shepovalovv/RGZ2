@@ -24,6 +24,12 @@ footer {
     
 }
 
+button {
+    background-color: white;
+    color: blue;
+    border-color: black;
+}
+
 footer:hover {
     color: red;
 }
@@ -52,4 +58,8 @@ a:hover {
 
 a {
     text-decoration: none;
+}
+
+button:hover {
+    font-size: large;
 }

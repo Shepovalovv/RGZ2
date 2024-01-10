@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block main %}
+    <h1>Все инициативы пользователя {{ session['username'] }}</h1>
+    
+    <ul>
+        {% for initiative in user_initiatives %}
+            <li>{{ initiative.title }} - {{ initiative.text }}
+                <form method="post" action="{{ url_for('all_initiatives') }}">
+                    <input type="hidden" name="delete_initiative" value="{{ initiative.initiatives_id }}">
+                    <button type="submit" onclick="return confirm('Вы уверены, что хотите удалить эту инициативу?')">Удалить</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
